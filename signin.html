@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Helpify</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, hsl(200, 95%, 50%) 0%, hsl(160, 70%, 45%) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .signin-container {
+            background: hsl(0, 0%, 100%);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px hsl(200, 90%, 45%, 0.1);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: hsl(215, 20%, 50%);
+            font-size: 0.9rem;
+        }
+
+        .auth-switch a {
+            color: hsl(200, 90%, 45%);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .auth-switch a:hover {
+            color: hsl(200, 85%, 60%);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo h1 {
+            background: linear-gradient(135deg, hsl(200, 90%, 45%), hsl(160, 70%, 45%));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo p {
+            color: hsl(215, 20%, 50%);
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: hsl(215, 25%, 15%);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid hsl(214, 32%, 91%);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: hsl(0, 0%, 100%);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: hsl(200, 90%, 45%);
+            box-shadow: 0 0 0 3px hsl(200, 90%, 45%, 0.1);
+        }
+
+        .signin-btn {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: linear-gradient(135deg, hsl(200, 90%, 45%), hsl(160, 70%, 45%));
+            color: hsl(0, 0%, 100%);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px hsl(200, 90%, 45%, 0.1);
+        }
+
+        .signin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px hsl(200, 90%, 45%, 0.2);
+        }
+
+        .signin-btn:active {
+            transform: translateY(0);
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .forgot-password a {
+            color: hsl(200, 90%, 45%);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            color: hsl(200, 85%, 60%);
+        }
+
+        .welcome-text {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid hsl(214, 32%, 91%);
+            color: hsl(215, 20%, 50%);
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .back-link a {
+            color: hsl(200, 90%, 45%);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: hsl(200, 85%, 60%);
+        }
+
+        @media (max-width: 480px) {
+            .signin-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .logo h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signin-container">
+        <div class="auth-switch">
+            Don't have an account? <a href="/signup.html">Sign Up</a>
+        </div>
+
+        <div class="logo">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <h1>❤️ Helpify</h1>
+            </a>
+            <p>Welcome back to our community</p>
+        </div>
+
+        <form id="signinForm" onsubmit="handleSignin(event)">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+
+            <button type="submit" class="signin-btn">Sign In</button>
+        </form>
+
+        <div class="forgot-password">
+            <a href="/reset-password.html">Forgot your password?</a>
+        </div>
+
+        <div class="welcome-text">
+            Ready to continue helping your community? Let's get you signed in!
+        </div>
+
+        <div class="back-link">
+            <a href="/">← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Simulated user database (in a real app, this would be on the server)
+        const users = [
+            { email: 'user@example.com', password: 'password123' },
+            { email: 'john@example.com', password: 'john123' },
+            { email: 'jane@example.com', password: 'jane123' },
+            { email: 'hasan123@gmail.com', password: 'Hasan.1h' }
+        ];
+
+        function showError(message) {
+            // Remove existing error messages
+            const existingError = document.querySelector('.error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+
+            // Create new error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.style.cssText = 
+                background: hsl(0, 70%, 95%);
+                color: hsl(0, 70%, 50%);
+                border: 1px solid hsl(0, 70%, 85%);
+                padding: 0.75rem;
+                border-radius: 8px;
+                margin-bottom: 1rem;
+                font-size: 0.9rem;
+                text-align: center;
+            ;
+            errorDiv.textContent = message;
+
+            // Insert error message before the form
+            const form = document.getElementById('signinForm');
+            form.parentNode.insertBefore(errorDiv, form);
+
+            // Auto-remove error after 5 seconds
+            setTimeout(() => {
+                if (errorDiv.parentNode) {
+                    errorDiv.remove();
+                }
+            }, 5000);
+        }
+
+        function findUserByEmail(email) {
+            return users.find(user => user.email.toLowerCase() === email.toLowerCase());
+        }
+
+        function handleSignin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Basic email validation
+            if (!email.includes('@')) {
+                showError('Please enter a valid email address');
+                return;
+            }
+
+            // Check if user exists
+            const user = findUserByEmail(email);
+            if (!user) {
+                showError('No account found with this email.');
+                return;
+            }
+
+            // Check password
+            if (user.password !== password) {
+                showError('Incorrect password.');
+                return;
+            }
+
+            // Success - show success message
+            alert('Welcome back! You have been signed in successfully.');
+
+            // In a real application, you would send this data to your server
+            console.log('Sign in attempt:', { email, password });
+
+            // Redirect back to home page
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>

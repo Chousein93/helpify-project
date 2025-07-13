@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Helpify</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, hsl(200, 95%, 50%) 0%, hsl(160, 70%, 45%) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .signup-container {
+            background: hsl(0, 0%, 100%);
+            padding: 3rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px hsl(200, 90%, 45%, 0.1);
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .auth-switch {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: hsl(215, 20%, 50%);
+            font-size: 0.9rem;
+        }
+
+        .auth-switch a {
+            color: hsl(200, 90%, 45%);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .auth-switch a:hover {
+            color: hsl(200, 85%, 60%);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo h1 {
+            background: linear-gradient(135deg, hsl(200, 90%, 45%), hsl(160, 70%, 45%));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo p {
+            color: hsl(215, 20%, 50%);
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: hsl(215, 25%, 15%);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid hsl(214, 32%, 91%);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: hsl(0, 0%, 100%);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: hsl(200, 90%, 45%);
+            box-shadow: 0 0 0 3px hsl(200, 90%, 45%, 0.1);
+        }
+
+        .form-group input.error {
+            border-color: hsl(0, 70%, 50%);
+            box-shadow: 0 0 0 3px hsl(0, 70%, 50%, 0.1);
+        }
+
+        .error-message {
+            color: hsl(0, 70%, 50%);
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .password-input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-input-container input {
+            padding-right: 3rem;
+        }
+
+        .show-password-btn {
+            position: absolute;
+            right: 0.75rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.25rem;
+            color: hsl(215, 20%, 50%);
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .show-password-btn:hover {
+            color: hsl(200, 90%, 45%);
+        }
+
+        .password-requirements {
+            font-size: 0.8rem;
+            color: hsl(215, 20%, 50%);
+            margin-top: 0.25rem;
+        }
+
+        .requirement {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin: 0.1rem 0;
+        }
+
+        .requirement.valid {
+            color: hsl(120, 70%, 45%);
+        }
+
+        .requirement.invalid {
+            color: hsl(0, 70%, 50%);
+        }
+
+        .signup-btn {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: linear-gradient(135deg, hsl(200, 90%, 45%), hsl(160, 70%, 45%));
+            color: hsl(0, 0%, 100%);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px hsl(200, 90%, 45%, 0.1);
+        }
+
+        .signup-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px hsl(200, 90%, 45%, 0.2);
+        }
+
+        .signup-btn:active {
+            transform: translateY(0);
+        }
+
+        .welcome-text {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid hsl(214, 32%, 91%);
+            color: hsl(215, 20%, 50%);
+            font-size: 0.9rem;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .back-link a {
+            color: hsl(200, 90%, 45%);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .back-link a:hover {
+            color: hsl(200, 85%, 60%);
+        }
+
+        @media (max-width: 480px) {
+            .signup-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .logo h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="auth-switch">
+            Already have an account? <a href="/signin.html">Sign In</a>
+        </div>
+
+        <div class="logo">
+            <a href="/" style="text-decoration: none; color: inherit;">
+                <h1>❤️ Helpify</h1>
+            </a>
+            <p>Join our community of helpers</p>
+        </div>
+
+        <form id="signupForm" onsubmit="handleSignup(event)">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required placeholder="Enter your username">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email" oninput="validateEmail()">
+                <div id="email-error" class="error-message">Please enter a valid email address</div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-input-container">
+                    <input type="password" id="password" name="password" required placeholder="Create a password" oninput="validatePassword()">
+                    <button type="button" class="show-password-btn" onclick="togglePasswordVisibility()" aria-label="Toggle password visibility">
+                        <span id="eye-icon">👁️</span>
+                    </button>
+                </div>
+                <div class="password-requirements">
+                    <div id="length-req" class="requirement invalid">✗ At least 8 characters</div>
+                    <div id="letter-req" class="requirement invalid">✗ At least one letter</div>
+                    <div id="number-req" class="requirement invalid">✗ At least one number</div>
+                    <div id="special-req" class="requirement invalid">✗ At least one special character</div>
+                </div>
+                <div id="password-error" class="error-message">Password does not meet requirements</div>
+            </div>
+
+            <button type="submit" class="signup-btn">Create Account</button>
+        </form>
+
+        <div class="welcome-text">
+            Ready to make a difference in your community? Let's get started!
+        </div>
+
+        <div class="back-link">
+            <a href="/">← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.textContent = '👁️';
+            }
+        }
+
+        function validateEmail() {
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('email-error');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (emailInput.value && !emailPattern.test(emailInput.value)) {
+                emailInput.classList.add('error');
+                emailError.classList.add('show');
+                return false;
+            } else {
+                emailInput.classList.remove('error');
+                emailError.classList.remove('show');
+                return true;
+            }
+        }
+
+        function validatePassword() {
+            const passwordInput = document.getElementById('password');
+            const password = passwordInput.value;
+
+            // Check requirements
+            const lengthReq = document.getElementById('length-req');
+            const letterReq = document.getElementById('letter-req');
+            const numberReq = document.getElementById('number-req');
+            const specialReq = document.getElementById('special-req');
+
+            // Length check
+            if (password.length >= 8) {
+                lengthReq.textContent = '✓ At least 8 characters';
+                lengthReq.className = 'requirement valid';
+            } else {
+                lengthReq.textContent = '✗ At least 8 characters';
+                lengthReq.className = 'requirement invalid';
+            }
+
+            // Letter check
+            if (/[a-zA-Z]/.test(password)) {
+                letterReq.textContent = '✓ At least one letter';
+                letterReq.className = 'requirement valid';
+            } else {
+                letterReq.textContent = '✗ At least one letter';
+                letterReq.className = 'requirement invalid';
+            }
+
+            // Number check
+            if (/[0-9]/.test(password)) {
+                numberReq.textContent = '✓ At least one number';
+                numberReq.className = 'requirement valid';
+            } else {
+                numberReq.textContent = '✗ At least one number';
+                numberReq.className = 'requirement invalid';
+            }
+
+            // Special character check
+            if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+                specialReq.textContent = '✓ At least one special character';
+                specialReq.className = 'requirement valid';
+            } else {
+                specialReq.textContent = '✗ At least one special character';
+                specialReq.className = 'requirement invalid';
+            }
+
+            // Overall validation
+            const isValid = password.length >= 8 && 
+                           /[a-zA-Z]/.test(password) && 
+                           /[0-9]/.test(password) && 
+                           /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password);
+
+            const passwordError = document.getElementById('password-error');
+            if (password && !isValid) {
+                passwordInput.classList.add('error');
+                passwordError.classList.add('show');
+                return false;
+            } else {
+                passwordInput.classList.remove('error');
+                passwordError.classList.remove('show');
+                return true;
+            }
+        }
+
+        // Simulated user database (in a real app, this would be on the server)
+        const users = [
+            { email: 'user@example.com', password: 'password123' },
+            { email: 'john@example.com', password: 'john123' },
+            { email: 'jane@example.com', password: 'jane123' },
+            { email: 'hasan123@gmail.com', password: 'Hasan.1h' }
+        ];
+
+        function showError(message) {
+            // Remove existing error messages
+            const existingError = document.querySelector('.error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+
+            // Create new error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.style.cssText = `
+                background: hsl(0, 70%, 95%);
+                color: hsl(0, 70%, 50%);
+                border: 1px solid hsl(0, 70%, 85%);
+                padding: 0.75rem;
+                border-radius: 8px;
+                margin-bottom: 1rem;
+                font-size: 0.9rem;
+                text-align: center;
+            `;
+            errorDiv.textContent = message;
+
+            // Insert error message before the form
+            const form = document.getElementById('signupForm');
+            form.parentNode.insertBefore(errorDiv, form);
+
+            // Auto-remove error after 5 seconds
+            setTimeout(() => {
+                if (errorDiv.parentNode) {
+                    errorDiv.remove();
+                }
+            }, 5000);
+        }
+
+        function findUserByEmail(email) {
+            return users.find(user => user.email.toLowerCase() === email.toLowerCase());
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Validate all fields
+            let isValid = true;
+
+            // Username validation
+            if (username.length < 3) {
+                showError('Username must be at least 3 characters long');
+                isValid = false;
+            }
+
+            // Email validation
+            if (!validateEmail() || !email) {
+                isValid = false;
+            } else {
+                // Check if email already exists
+                const existingUser = findUserByEmail(email);
+                if (existingUser) {
+                    showError('An account with this email already exists. Please sign in instead.');
+                    isValid = false;
+                }
+            }
+
+            // Password validation
+            if (!validatePassword() || !password) {
+                isValid = false;
+            }
+
+            if (!isValid) {
+                return;
+            }
+
+            // Add user to database (in real app, this would be done on server)
+            users.push({ email, password });
+
+            // Show success message
+            alert('Account created successfully! Welcome to Helpify!');
+
+            // In a real application, you would send this data to your server
+            console.log('Sign up attempt:', { username, email, password });
+
+            // Redirect to sign in page
+            window.location.href = '/signin.html';
+        }
+    </script>
+</body>
+</html>
