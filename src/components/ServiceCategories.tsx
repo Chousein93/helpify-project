@@ -1,13 +1,4 @@
-import { 
-  Passport, 
-  Briefcase, 
-  Home, 
-  Heart, 
-  GraduationCap, 
-  Building, 
-  Baby, 
-  Scale 
-} from "lucide-react";
+import { Import as Passport, Briefcase, Home, Heart, GraduationCap, Building, Baby, Scale } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
 
 export function ServiceCategories() {
