@@ -4,8 +4,11 @@ import { Heart, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLanguage } from "@/hooks/useLanguage";
+import { LanguageSelector } from "@/components/LanguageSelector";
 
 export function SignIn() {
+  const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -47,9 +50,13 @@ export function SignIn() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+        <div className="flex justify-end mb-4">
+          <LanguageSelector />
+        </div>
+        
         <div className="text-center mb-6">
           <p className="text-gray-600">
-            Hesabınız yok mu? <Link to="/signup" className="text-primary hover:underline font-semibold">Kayıt Ol</Link>
+            Hesabınız yok mu? <Link to="/signup" className="text-primary hover:underline font-semibold">{t('signUp')}</Link>
           </p>
         </div>
 
@@ -58,11 +65,11 @@ export function SignIn() {
             <Link to="/" className="inline-flex items-center justify-center space-x-2 mb-4">
               <Heart className="h-8 w-8 text-primary" />
               <span className="text-3xl font-bold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
-                Helpify
+                {t('appName')}
               </span>
             </Link>
-            <CardTitle className="text-2xl">Hoş Geldiniz</CardTitle>
-            <CardDescription>Topluluğumuza geri dönün</CardDescription>
+            <CardTitle className="text-2xl">{t('signIn')}</CardTitle>
+            <CardDescription>{t('tagline')}</CardDescription>
           </CardHeader>
 
           <CardContent>
@@ -109,7 +116,7 @@ export function SignIn() {
               )}
 
               <Button type="submit" className="w-full">
-                Giriş Yap
+                {t('signIn')}
               </Button>
             </form>
 
@@ -121,7 +128,7 @@ export function SignIn() {
 
             <div className="text-center mt-6 pt-6 border-t border-gray-200">
               <p className="text-sm text-gray-600">
-                Topluluğumuza yardım etmeye devam etmeye hazır mısınız?
+                Resmi işlerinizi halletmeye hazır mısınız?
               </p>
             </div>
 
